@@ -1,4 +1,4 @@
-# Movie Explorer
+# React Movie App project
 
 Movie App is a web application built with React JS and Chakra UI for a sleek, responsive user interface. It utilizes Firebase Authentication for secure user login and Firebase Firestore for data management. The OMDb API provides movie information, allowing users to explore, save, and view details on various movies.
 
