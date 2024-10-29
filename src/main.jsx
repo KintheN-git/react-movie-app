@@ -8,6 +8,10 @@ import Home from "./pages/Home.jsx";
 import Movies from "./pages/movies/Movies.jsx";
 import Shows from "./pages/shows/Shows.jsx";
 import Search from "./pages/search/Search.jsx";
+import DetailsPage from "./pages/details/DetailsPage.jsx";
+import { AuthProvider } from "./context/authProvider.jsx";
+import WatchList from "./pages/watchlist/WatchList.jsx";
+import Protected from "./components/routes/Protected.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,6 +33,18 @@ const router = createBrowserRouter([
         path: "/search",
         element: <Search />,
       },
+      {
+        path: "/:mediaType/:id",
+        element: <DetailsPage />,
+      },
+      {
+        path: "/watchlist",
+        element: (
+          <Protected>
+            <WatchList />
+          </Protected>
+        ),
+      },
     ],
   },
 ]);
@@ -37,7 +53,9 @@ createRoot(document.getElementById("root")).render(
   <>
     <ColorModeScript initialColorMode={theme.config.initialColorMode} />
     <ChakraProvider theme={theme}>
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </ChakraProvider>
   </>
 );
